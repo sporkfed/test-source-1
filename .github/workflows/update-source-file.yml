@@ -1,0 +1,23 @@
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "0 * * * *"
+
+jobs:
+  update-source-file:
+    name: "Update source.yml file"
+    runs-on: ubuntu-latest
+    steps:
+      - name: update file and push to remote
+        run: |
+          echo "current_time: $(date)" > source.yml
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -A
+          git commit -m "Update test.txt"
+          git push
