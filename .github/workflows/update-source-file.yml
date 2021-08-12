@@ -11,6 +11,7 @@ jobs:
     name: "Update source.yml file"
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: update file and push to remote
         run: |
           echo "current_time: $(date)" > source.yml
